@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gallery - Nithya Tickets</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <!-- Font Awesome CDN for YouTube icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <!-- AOS CSS for animations -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    />
+    <!-- Custom CSS -->
+    <style>
+      /* General Styles */
+      body {
+        background-color: #000;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+      /* Enhanced Navbar Link Hover Effect */
+      .navbar-light .navbar-nav .nav-link {
+        display: inline-block;
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+        color: #000 !important; /* Dark black text */
+        position: relative;
+        transition: all 0.3s ease;
+      }
+      .nav-link {
+        font-family: Poppins;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 100%;
+      }
+      .navbar-light .navbar-nav .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #2aa9df;
+        left: 50%;
+        bottom: -5px;
+        transform: translateX(-50%);
+        transition: width 0.3s ease;
+      }
+      .navbar-light .navbar-nav .nav-link:hover {
+        color: #2aa9df !important;
+        transform: scale(1.05);
+      }
+      .navbar-light .navbar-nav .nav-link:hover::after {
+        width: 60%;
+      }
+      /* Gallery Section */
+      #gallery {
+        position: relative;
+        background-color: #000;
+        padding-top: 100px; 
+        padding-bottom: 10px;
+      }
+      .gallery-container {
+        position: relative;
+        margin: 0 auto;
+        padding: 0 3rem;
+        min-height: 1300px; /* As per your design */
+      }
+      .gallery-item {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.05);
+      }
+      .gallery-item a {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .gallery-item a .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.3s ease;
+      }
+      .gallery-item a:hover .overlay {
+        opacity: 1;
+      }
+      .gallery-item a .overlay i {
+        color: #dc3545;
+        font-size: 2.5rem;
+      }
+      /* Footer Styles */
+      footer {
+        position: relative;
+        color: #fff;
+        padding: 3rem 1.5rem;
+        background: url("assets/images/footebg.png") no-repeat center center/cover;
+      }
+      footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        pointer-events: none;
+      }
+      footer .footer-content {
+        position: relative;
+        z-index: 1;
+      }
+      footer a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      footer a:hover {
+        color: #dc3545;
+      }
+      .social-icon {
+        font-size: 1.5rem;
+        transition: transform 0.3s;
+      }
+      .social-icon:hover {
+        transform: scale(1.1);
+      }
+      /* Mobile Responsive Adjustments */
+      @media (max-width: 767px) {
+        /* Navbar: Bootstrap handles most of the responsive behavior */
+  
+        /* Gallery: Remove absolute positioning and stack items */
+        .gallery-container {
+          position: relative;
+          min-height: auto;
+          padding: 0 1rem;
+        }
+        .gallery-item {
+          position: relative !important;
+          top: auto !important;
+          left: auto !important;
+          width: 100% !important;
+          height: auto !important;
+          margin-bottom: 1rem !important;
+        }
+        /* Footer: Center content on mobile */
+        footer .footer-content {
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Fixed Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: auto;">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img
+            src="assets/images/nithyalogo.png"
+            alt="logo"
+            width="270"
+            height="64"
+          />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="INDEX.HTML">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/INDEX.HTML#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/INDEX.HTML#blogs">Blogs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/INDEX.HTML#contact">Contact Us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Gallery Section -->
+    <section id="gallery">
+      <!-- Gallery Heading -->
+      <h2
+        class="text-white text-center text-3xl font-bold pt-12 mb-8"
+        data-aos="fade-up"
+      >
+        Gallery
+      </h2>
+      <!-- Container for Positioned Images -->
+      <div class="gallery-container container" style="min-height: 1300px;">
+        <!-- Gallery 1 -->
+        <div
+          class="gallery-item group"
+          style="top: 121px; left: 28px; width: 600px; height: 476px;"
+          data-aos="fade-right"
+        >
+          <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer">
+            <img
+              src="assets/images/gallery1.png"
+              alt="Gallery image 1: Scenic view"
+            />
+            <div class="overlay">
+              <i class="fab fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+        <!-- Gallery 2 -->
+        <div
+          class="gallery-item group"
+          style="top: 121px; left: 649px; width: 295px; height: 476px;"
+          data-aos="fade-left"
+          data-aos-delay="100"
+        >
+          <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer">
+            <img
+              src="assets/images/gallery2.png"
+              alt="Gallery image 2: Beautiful architecture"
+            />
+            <div class="overlay">
+              <i class="fab fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+        <!-- Gallery 3 -->
+        <div
+          class="gallery-item group"
+          style="top: 121px; left: 958px; width: 200px; height: 235px;"
+          data-aos="fade-left"
+          data-aos-delay="200"
+        >
+          <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer">
+            <img
+              src="assets/images/gallery3.png"
+              alt="Gallery image 3: Sunset landscape"
+            />
+            <div class="overlay">
+              <i class="fab fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+        <!-- Gallery 4 -->
+        <div
+          class="gallery-item group"
+          style="top: 371px; left: 958px; width: 200px; height: 235px;"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer">
+            <img
+              src="assets/images/gallery4.png"
+              alt="Gallery image 4: Artistic portrait"
+            />
+            <div class="overlay">
+              <i class="fab fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+        <!-- Gallery 5 -->
+        <div
+          class="gallery-item group"
+          style="top: 621px; left: 28px; width: 430px; height: 215px;"
+          data-aos="fade-up"
+          data-aos-delay="400"
+        >
+          <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer">
+            <img
+              src="assets/images/gallery5.png"
+              alt="Gallery image 5: Nature scene"
+            />
+            <div class="overlay">
+              <i class="fab fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+        <!-- Gallery 6 -->
+        <div
+          class="gallery-item group"
+          style="top: 850px; left: 28px; width: 430px; height: 215px;"
+          data-aos="fade-up"
+          data-aos-delay="500"
+        >
+          <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer">
+            <img
+              src="assets/images/gallery6.png"
+              alt="Gallery image 6: Majestic landscape"
+            />
+            <div class="overlay">
+              <i class="fab fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+        <!-- Gallery 7 -->
+        <div
+          class="gallery-item group"
+          style="top: 621px; left: 480px; width: 385px; height: 454px;"
+          data-aos="fade-up"
+          data-aos-delay="600"
+        >
+          <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer">
+            <img
+              src="assets/images/gallery7.png"
+              alt="Gallery image 7: Urban cityscape"
+            />
+            <div class="overlay">
+              <i class="fab fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+        <!-- Gallery 8 -->
+        <div
+          class="gallery-item group"
+          style="top: 621px; left: 879px; width: 265px; height: 454px;"
+          data-aos="fade-up"
+          data-aos-delay="700"
+        >
+          <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer">
+            <img
+              src="assets/images/gallery8.png"
+              alt="Gallery image 8: Additional view"
+            />
+            <div class="overlay">
+              <i class="fab fa-youtube"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container footer-content">
+        <div class="row">
+          <!-- Left Column: Company Info -->
+          <div class="col-md-6 mb-4 mb-md-0 text-left">
+            <h2 class="h3 text-danger font-weight-bold">Company</h2>
+            <ul class="list-unstyled">
+              <li class="mb-2">
+                <a href="/INDEX.HTML#about">About</a>
+              </li>
+              <li class="mb-2">
+                <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+              </li>
+              <li class="mb-2">
+                <a href="privacy.html">Privacy &amp; Policy</a>
+              </li>
+              <li class="mb-2">
+                <a href="/INDEX.HTML#howItsWork">How it Works</a>
+              </li>
+              <li class="mb-2">
+                <a href="https://maps.app.goo.gl/DzyrZagajfmd38gT7">Our Location</a>
+              </li>
+              <li class="mb-2">
+                <a href="help.html">Help</a>
+              </li>
+            </ul>
+          </div>
+          <!-- Right Column: Contact Info -->
+          <div class="col-md-6 text-left">
+            <h2 class="h3 text-danger font-weight-bold">Contact Us</h2>
+            <p><strong>Call us:</strong> +91 9980129002</p>
+            <p><strong>Email us:</strong> support@nithyatickets.com</p>
+            <p class="font-weight-bold">Follow Us</p>
+            <div class="d-flex justify-content-end align-items-center">
+              <a href="https://wa.me/919980129002" target="_blank" rel="noreferrer" aria-label="WhatsApp" class="text-white mx-2 social-icon">
+                <i class="fab fa-whatsapp"></i>
+              </a>
+              <a href="https://www.facebook.com/share/16GS3pAzUv/" target="_blank" rel="noreferrer" aria-label="Facebook" class="text-white mx-2 social-icon">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="https://x.com/i/flow/login?redirect_after_login=%2FNithyaTick24" target="_blank" rel="noreferrer" aria-label="Twitter" class="text-white mx-2 social-icon">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="https://www.instagram.com/nithyaticket?igsh=eXI0OGNmYTMya2M1" target="_blank" rel="noreferrer" aria-label="Instagram" class="text-white mx-2 social-icon">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="https://www.youtube.com/@nithyatickets" target="_blank" rel="noreferrer" aria-label="YouTube" class="text-white mx-2 social-icon">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/nithya-tickets-1296303" target="_blank" rel="noreferrer" aria-label="LinkedIn" class="text-white mx-2 social-icon">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- jQuery, Bootstrap JS, and AOS JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+      $(document).ready(function () {
+        AOS.init({ duration: 1000, once: true });
+      });
+    </script>
+  </body>
+</html>
